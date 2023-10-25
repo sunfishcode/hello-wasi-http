@@ -1,13 +1,13 @@
-# Hello wasi-http!
+# Hello WASI HTTP!
 
-This is a simple tutorial to get started with wasi-http using the
+This is a simple tutorial to get started with WASI HTTP using the
 `wasmtime serve` command that can be enabled in [Wasmtime] 14.0. It runs an
 HTTP server and forwards requests to a Wasm component via the [WASI HTTP] API.
 
 [Wasmtime]: https://wasmtime.dev
 [WASI HTTP]: https://github.com/WebAssembly/wasi-http/
 
-A word of cuation: the Wasi-http API is settling down but not quite stable.
+The WASI HTTP API is settling down but as of this writing not quite stable.
 This tutorial uses a snapshot of it that's implemented in Wasmtime 14.0.0.
 
 With that said...
@@ -50,7 +50,7 @@ TODO: hopefully stuff here like "Hello, wasi:http/proxy world!"
 
 ## Notes
 
-`wasmtime serve` uses the "proxy" world, which is a specialized world just for
+`wasmtime serve` uses the [proxy] world, which is a specialized world just for
 accepting requests and producing responses. One interesting thing about the proxy
 world is that it doesn't have a filesystem or network API. If you add code to the
 example that tries to access files or network sockets, it won't be able to build,
@@ -72,6 +72,8 @@ set up.
 
 If you're interested in tutorials for either of these options, please reach out
 and say hi!
+
+[proxy]: https://github.com/WebAssembly/wasi-http/blob/main/wit/proxy.wit
 
 ## Creating this repo
 
