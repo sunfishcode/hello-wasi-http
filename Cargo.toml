@@ -4,10 +4,25 @@ version = "0.0.0"
 edition = "2021"
 publish = false
 
+[lib]
+crate-type = ["cdylib"]
+
 [package.metadata.component]
 package = "component:hello-wasi-http"
 
 [package.metadata.component.dependencies]
+
+[package.metadata.component.target]
+
+[package.metadata.component.target.dependencies]
+"wasi:http" = { path = "wit/deps/http" }
+"wasi:clocks" = { path = "wit/deps/clocks" }
+"wasi:io" = { path = "wit/deps/io" }
+"wasi:random" = { path = "wit/deps/random" }
+"wasi:cli" = { path = "wit/deps/cli" }
+"wasi:filesystem" = { path = "wit/deps/filesystem" }
+"wasi:sockets" = { path = "wit/deps/sockets" }
+"wasi:logging" = { path = "wit/deps/logging" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
