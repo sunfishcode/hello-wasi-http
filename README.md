@@ -20,11 +20,13 @@ version 0.3.1, which is a tool for building Wasm components implemented in Rust.
 With that, build the Wasm component from the source in this repository:
 ```
 $ cargo component build
-
-TODO: output here
+   Compiling hello-wasi-http v0.0.0 (/home/wasm/hello-wasi-http)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.17s
+    Creating component /home/wasm/hello-wasi-http/target/wasm32-wasi/debug/hello_wasi_http.wasm
+$
 ```
 
-This builds a component in TODO: the path.
+This builds a Wasm component, `target/wasm32-wasi/debug/hello_wasi_http.wasm`.
 
 To run it, we'll use Wasmtime 14.0. We'll need to use a special `cargo install`
 invocation rather than the usual installation instructions so that we can
@@ -36,7 +38,7 @@ $ cargo install --locked --version=14.0.1 wasmtime-cli --features=serve
 
 Then, we can run `wasmtime serve` on our Wasm component:
 ```
-$ wasmtime serve target/debug/hello-wasi-http.wasm
+$ wasmtime serve target/wasm32-wasi/debug/hello_wasi_http.wasm
 ```
 This starts up an HTTP server on `0.0.0.0:8080` (the specific address and port
 can be configuted with the `--addr=` flag.
@@ -44,8 +46,7 @@ can be configuted with the `--addr=` flag.
 With that running, in another window, we can now make requests!
 ```
 $ curl http://localhost:8080
-
-TODO: hopefully stuff here like "Hello, wasi:http/proxy world!"
+Hello, wasi:http/proxy world!
 ```
 
 ## Notes
@@ -90,25 +91,23 @@ $ cargo component new --reactor hello-wasi-http
 $ cd hello-wasi-http
 ```
 
-Copy the `wit` directory from Wasmtime 14.0.0, to ensure that you're using the
+Copy the `wit` directory from Wasmtime 14.0.0, to ensure that we're using the
 same version of the API that Wasmtime is built with:
 
 <https://github.com/bytecodealliance/wasmtime/tree/release-14.0.0>
 
-TODO: Describe this more, and describe our changes.
-
 In the future, we'll have wit dependencies stored in a registry, which will
 make it much easier to add dependencies.
 
-Copy Wasmtime's `api_proxy.rs` contents from Wasmtime trunk at
-`crates/test-programs/src/bin/api_proxy.rs` into src/main.rs, and add the
-wit-bindgen macro to it:
+I derived `src/lib.rs` from Wasmtime's
+`crates/test-programs/src/bin/api_proxy.rs` contents on the `main` branch,
+adapted it to work with cargo component, in particular by adding:
 
 ```rust
 cargo_component_bindings::generate!();
 ```
 
-I also tidied up the code slightly.
+and renaming the `T` type to `Component`, which the bindings expect.
 
 Add dependencies:
 ```
@@ -120,6 +119,7 @@ $ cargo component add --target --path wit/deps/random wasi:random
 $ cargo component add --target --path wit/deps/cli wasi:cli
 $ cargo component add --target --path wit/deps/logging wasi:logging
 ```
-TODO: we really shouldn't need *all* of these.
+We don't actually use all of these in this tutorial, but they're currently
+needed because of some of the interfaces we copied in from the Wasmtime tree.
 
-TODO: make a api_proxy_streaming.rs version
+TODO: I should also make a api_proxy_streaming.rs version to show streaming.
