@@ -123,7 +123,8 @@ $ cargo component add --target --path wit/deps/random wasi:random
 $ cargo component add --target --path wit/deps/cli wasi:cli
 $ cargo component add --target --path wit/deps/logging wasi:logging
 ```
-We don't actually use all of these in this tutorial, but they're currently
-needed because of some of the interfaces we copied in from the Wasmtime tree.
+These don't all actually get used in this tutorial, but they're currently
+needed because of some of the interfaces we copied in from the Wasmtime tree
+reference them.
 
 TODO: I should also make a api_proxy_streaming.rs version to show streaming.
