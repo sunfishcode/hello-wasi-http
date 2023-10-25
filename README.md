@@ -41,7 +41,7 @@ Then, we can run `wasmtime serve` on our Wasm component:
 $ wasmtime serve target/wasm32-wasi/debug/hello_wasi_http.wasm
 ```
 This starts up an HTTP server on `0.0.0.0:8080` (the specific address and port
-can be configuted with the `--addr=` flag.
+can be configuted with the `--addr=` flag).
 
 With that running, in another window, we can now make requests!
 ```
