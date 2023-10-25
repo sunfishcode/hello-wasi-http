@@ -10,6 +10,8 @@ package = "component:hello-wasi-http"
 [package.metadata.component.dependencies]
 
 [package.metadata.component.target]
+world = "wasi:http/proxy"
+path = "wit/deps/http"
 
 [package.metadata.component.target.dependencies]
 "wasi:clocks" = { path = "wit/deps/clocks" }

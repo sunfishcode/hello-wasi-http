@@ -40,11 +40,9 @@ TODO: ...
 Build it with:
 ```
 $ cargo component build
-error: failed to create a target world for package `hello-wasi-http` (/home/dev/wasm/hello-wasi-http/Cargo.toml)
-
-Caused by:
-    0: failed to select the default world to use for local target `/home/dev/wasm/hello-wasi-http/wit`
-    1: multiple worlds found in package `wasmtime:wasi`: one must be explicitly chosen
+thread 'main' panicked at /home/dev/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wit-parser-0.12.1/src/resolve.rs:774:9:
+assertion failed: prev.is_none()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 TODO: fix the errors :smile:
 TODO: say more
