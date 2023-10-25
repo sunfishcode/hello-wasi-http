@@ -25,6 +25,18 @@ Copy Wasmtime's `api_proxy.rs` contents from trunk into src/main.rs.
 crates/test-programs/src/bin/api_proxy.rs
 TODO: Describe this more.
 
+Add dependencies:
+```
+$ cargo component add --target --path wit/deps/clocks wasi:clocks
+$ cargo component add --target --path wit/deps/filesystem wasi:filesystemm
+$ cargo component add --target --path wit/deps/sockets wasi:sockets
+$ cargo component add --target --path wit/deps/io wasi:io
+$ cargo component add --target --path wit/deps/random wasi:random
+$ cargo component add --target --path wit/deps/cli wasi:cli
+$ cargo component add --target --path wit/deps/logging wasi:logging
+```
+TODO: ...
+
 Build it with:
 ```
 $ cargo component build
