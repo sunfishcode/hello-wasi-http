@@ -43,12 +43,8 @@ $ cargo component build
 error: failed to create a target world for package `hello-wasi-http` (/home/dev/wasm/hello-wasi-http/Cargo.toml)
 
 Caused by:
-    0: failed to merge local target `/home/dev/wasm/hello-wasi-http/wit`
-    1: package not found
-            --> /home/dev/wasm/hello-wasi-http/wit/command-extended.wit:4:10
-             |
-           4 |   import wasi:clocks/wall-clock@0.2.0-rc-2023-10-18;
-             |          ^----------
+    0: failed to select the default world to use for local target `/home/dev/wasm/hello-wasi-http/wit`
+    1: multiple worlds found in package `wasmtime:wasi`: one must be explicitly chosen
 ```
 TODO: fix the errors :smile:
 TODO: say more
