@@ -5,7 +5,7 @@ This is a simple tutorial to get started with wasi-http using the
 
 ## Let's go!
 
-First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements).
+First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements) version 0.3.0.
 
 Next, use `cargo-component new` to create a new project:
 
