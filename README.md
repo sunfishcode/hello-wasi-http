@@ -75,7 +75,12 @@ the Wasm to be able to access. This would require a custom embedding of Wasmtime
 as it wouldn't run under plain `wasmtime serve`, so it's a little more work to
 set up.
 
-If you're interested in tutorials for either of these options, please reach out
+In the future, we expect to see standard worlds emerge that combine WASI HTTP
+with many other APIs, such as [wasi-cloud-core].
+
+[wasi-cloud-core]: https://github.com/WebAssembly/wasi-cloud-core
+
+If you're interested in tutorials for any of these options, please reach out
 and say hi!
 
 [proxy]: https://github.com/WebAssembly/wasi-http/blob/main/wit/proxy.wit
