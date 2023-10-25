@@ -15,7 +15,11 @@ With that said...
 ## Let's go!
 
 First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements),
-version 0.3.1, which is a tool for building Wasm components implemented in Rust.
+version 0.3.1, which is a tool for building Wasm components implemented in
+Rust. (See [here] for information about building Wasm components from other
+languages too!)
+
+[here]: https://component-model.bytecodealliance.org/language-support.html
 
 With that, build the Wasm component from the source in this repository:
 ```
