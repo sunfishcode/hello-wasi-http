@@ -25,6 +25,22 @@ Copy Wasmtime's `api_proxy.rs` contents from trunk into src/main.rs.
 crates/test-programs/src/bin/api_proxy.rs
 TODO: Describe this more.
 
+Build it with:
+```
+$ cargo component build
+error: failed to create a target world for package `hello-wasi-http` (/home/dev/wasm/hello-wasi-http/Cargo.toml)
+
+Caused by:
+    0: failed to merge local target `/home/dev/wasm/hello-wasi-http/wit`
+    1: package not found
+            --> /home/dev/wasm/hello-wasi-http/wit/command-extended.wit:4:10
+             |
+           4 |   import wasi:clocks/wall-clock@0.2.0-rc-2023-10-18;
+             |          ^----------
+```
+TODO: fix the errors :smile:
+TODO: say more
+
 TODO: Install Wasmtime 14.0.0 with the "serve" feature enabled:
 
 ```
@@ -32,8 +48,10 @@ $ cargo install --locked --version=14.0.0 wasmtime-cli --features=serve
 ```
 
 ```
-$ wasmtime serve
+$ wasmtime serve ...
 ```
 TODO: ...
+
+TODO: wasmtime serve --help for more options
 
 TODO: make a api_proxy_streaming.rs version
