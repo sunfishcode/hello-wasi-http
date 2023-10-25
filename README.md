@@ -36,13 +36,31 @@ $ cargo component add --target --path wit/deps/cli wasi:cli
 $ cargo component add --target --path wit/deps/logging wasi:logging
 ```
 TODO: ...
+TODO: we really shouldn't need *all* of these
 
 Build it with:
 ```
 $ cargo component build
-thread 'main' panicked at /home/dev/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wit-parser-0.12.1/src/resolve.rs:774:9:
-assertion failed: prev.is_none()
-note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+error: failed to generate bindings from `/home/dev/wasm/hello-wasi-http/target/bindings/hello-wasi-http/target.wasm`: expected `exports` map to contain key `wasi:http/incoming-handler`
+ --> src/lib.rs:1:1
+  |
+1 | cargo_component_bindings::generate!();
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `cargo_component_bindings::generate` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0433]: failed to resolve: use of undeclared crate or module `bindings`
+  --> src/lib.rs:17:5
+   |
+17 | use bindings::wasi::http::types::{IncomingRequest, ResponseOutparam};
+   |     ^^^^^^^^ use of undeclared crate or module `bindings`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `bindings`
+  --> src/lib.rs:21:6
+   |
+21 | impl bindings::exports::wasi::http::incoming_handler::Guest for T {
+   |      ^^^^^^^^ use of undeclared crate or module `bindings`
+
 ```
 TODO: fix the errors :smile:
 TODO: say more
