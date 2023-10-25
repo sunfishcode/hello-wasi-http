@@ -25,6 +25,11 @@ Copy Wasmtime's `api_proxy.rs` contents from trunk into src/main.rs.
 crates/test-programs/src/bin/api_proxy.rs
 TODO: Describe this more.
 
-TODO: install Wasmtime 14.0.0
+TODO: install Wasmtime 14.0.0 from https://wasmtime.dev/
+
+```
+$ wasmtime serve
+```
+TODO: ...
 
 TODO: make a api_proxy_streaming.rs version
