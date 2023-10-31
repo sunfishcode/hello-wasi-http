@@ -22,7 +22,7 @@ languages too!)
 [here]: https://component-model.bytecodealliance.org/language-support.html
 
 With that, build the Wasm component from the source in this repository:
-```
+```sh
 $ cargo component build
    Compiling hello-wasi-http v0.0.0 (/home/wasm/hello-wasi-http)
     Finished dev [unoptimized + debuginfo] target(s) in 0.17s
@@ -32,13 +32,14 @@ $
 
 This builds a Wasm component, `target/wasm32-wasi/debug/hello_wasi_http.wasm`.
 
-To run it, we'll use Wasmtime 14.0. We'll need to use a special `cargo install`
-invocation rather than the usual installation instructions so that we can
-enable the "serve" feature. To install:
+To run it, we'll need at least Wasmtime 14.0.3. Installation instructions are
+on [wasmtime.dev]:
 
+```sh
+$ curl https://wasmtime.dev/install.sh -sSf | bash
 ```
-$ cargo install --locked --version=14.0.1 wasmtime-cli --features=serve
-```
+
+[installed from wasmtime.dev]: https://wasmtime.dev/
 
 Then, we can run `wasmtime serve` on our Wasm component:
 ```
