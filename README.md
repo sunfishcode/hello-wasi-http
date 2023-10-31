@@ -41,7 +41,7 @@ $ curl https://wasmtime.dev/install.sh -sSf | bash
 
 [wasmtime.dev]: https://wasmtime.dev/
 
-Then, we can run `wasmtime serve` on our Wasm component:
+Then, in a new terminal, we can run `wasmtime serve` on our Wasm component:
 ```
 $ wasmtime serve target/wasm32-wasi/debug/hello_wasi_http.wasm
 ```
