@@ -105,8 +105,10 @@ same version of the API that Wasmtime is built with:
 
 <https://github.com/bytecodealliance/wasmtime/tree/release-14.0.0>
 
+I then manually trimmed the filesystem and sockets dependencies out.
+
 In the future, we'll have wit dependencies stored in a registry, which will
-make it much easier to add dependencies.
+make this all much easier.
 
 I derived `src/lib.rs` from Wasmtime's
 `crates/test-programs/src/bin/api_proxy.rs` contents on the `main` branch,
@@ -121,8 +123,6 @@ and renaming the `T` type to `Component`, which the bindings expect.
 Add dependencies:
 ```
 $ cargo component add --target --path wit/deps/clocks wasi:clocks
-$ cargo component add --target --path wit/deps/filesystem wasi:filesystemm
-$ cargo component add --target --path wit/deps/sockets wasi:sockets
 $ cargo component add --target --path wit/deps/io wasi:io
 $ cargo component add --target --path wit/deps/random wasi:random
 $ cargo component add --target --path wit/deps/cli wasi:cli
