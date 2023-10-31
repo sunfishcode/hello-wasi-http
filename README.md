@@ -39,7 +39,7 @@ on [wasmtime.dev]:
 $ curl https://wasmtime.dev/install.sh -sSf | bash
 ```
 
-[installed from wasmtime.dev]: https://wasmtime.dev/
+[wasmtime.dev]: https://wasmtime.dev/
 
 Then, we can run `wasmtime serve` on our Wasm component:
 ```
