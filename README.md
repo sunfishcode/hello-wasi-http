@@ -1,8 +1,8 @@
 # Hello WASI HTTP!
 
 This is a simple tutorial to get started with WASI HTTP using the
-`wasmtime serve` command that can be enabled in [Wasmtime] 14.0. It runs an
-HTTP server and forwards requests to a Wasm component via the [WASI HTTP] API.
+`wasmtime serve` command in [Wasmtime] 14.0. It runs an HTTP server and
+forwards requests to a Wasm component via the [WASI HTTP] API.
 
 [Wasmtime]: https://wasmtime.dev
 [WASI HTTP]: https://github.com/WebAssembly/wasi-http/
