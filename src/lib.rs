@@ -1,16 +1,16 @@
 cargo_component_bindings::generate!();
 
-use bindings::wasi::http::types::{
-    Headers, IncomingRequest, OutgoingBody, OutgoingResponse, ResponseOutparam,
+pub use bindings::wasi::http::types::{
+    Fields, IncomingRequest, OutgoingBody, OutgoingResponse, ResponseOutparam,
 };
 
 struct Component;
 
 impl bindings::exports::wasi::http::incoming_handler::Guest for Component {
     fn handle(_request: IncomingRequest, outparam: ResponseOutparam) {
-        let hdrs = Headers::new(&[]);
-        let resp = OutgoingResponse::new(200, &hdrs);
-        let body = resp.write().expect("outgoing response");
+        let hdrs = Fields::new();
+        let resp = OutgoingResponse::new(hdrs);
+        let body = resp.body().expect("outgoing response");
 
         ResponseOutparam::set(outparam, Ok(resp));
 
@@ -19,6 +19,6 @@ impl bindings::exports::wasi::http::incoming_handler::Guest for Component {
             .expect("writing response");
 
         drop(out);
-        OutgoingBody::finish(body, None);
+        let _ = OutgoingBody::finish(body, None);
     }
 }
