@@ -20,9 +20,10 @@ package = "component:hello-wasi-http"
 "wasi:io" = { path = "wit/deps/io" }
 "wasi:random" = { path = "wit/deps/random" }
 "wasi:cli" = { path = "wit/deps/cli" }
-"wasi:logging" = { path = "wit/deps/logging" }
+"wasi:filesystem" = { path = "wit/deps/filesystem" }
+"wasi:sockets" = { path = "wit/deps/sockets" }
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cargo-component-bindings = "0.4.1"
+cargo-component-bindings = "0.5.0"
