@@ -19,6 +19,6 @@ impl bindings::exports::wasi::http::incoming_handler::Guest for Component {
             .expect("writing response");
 
         drop(out);
-        let _ = OutgoingBody::finish(body, None);
+        OutgoingBody::finish(body, None).unwrap();
     }
 }
