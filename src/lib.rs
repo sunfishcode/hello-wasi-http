@@ -1,4 +1,4 @@
-cargo_component_bindings::generate!();
+mod bindings;
 
 pub use bindings::wasi::http::types::{
     Fields, IncomingRequest, OutgoingBody, OutgoingResponse, ResponseOutparam,
