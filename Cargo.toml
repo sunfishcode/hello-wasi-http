@@ -9,6 +9,9 @@ crate-type = ["cdylib"]
 
 [package.metadata.component]
 package = "component:hello-wasi-http"
+# This tells cargo-component to use a special adapter, which doesn't depend on
+# `get-environment` or other things not present in the proxy world.
+proxy = true
 
 [package.metadata.component.dependencies]
 
@@ -26,4 +29,4 @@ package = "component:hello-wasi-http"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wit-bindgen = "0.16.0"
+wit-bindgen = "0.17.0"
