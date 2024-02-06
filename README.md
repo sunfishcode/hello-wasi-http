@@ -1,21 +1,20 @@
 # Hello WASI HTTP!
 
 This is a simple tutorial to get started with WASI HTTP using the
-`wasmtime serve` command in [Wasmtime] 14.0. It runs an HTTP server and
+`wasmtime serve` command in [Wasmtime] 17.0. It runs an HTTP server and
 forwards requests to a Wasm component via the [WASI HTTP] API.
 
 [Wasmtime]: https://wasmtime.dev
 [WASI HTTP]: https://github.com/WebAssembly/wasi-http/
 
-The WASI HTTP API is settling down but as of this writing not quite stable.
-This tutorial uses a snapshot of it that's implemented in Wasmtime 14.0.0.
+The WASI HTTP API is now stable, and part of WASI Preview 2.
 
-With that said...
+So without further ado...
 
 ## Let's go!
 
 First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements),
-version 0.4.1, which is a tool for building Wasm components implemented in
+version 0.7.1, which is a tool for building Wasm components implemented in
 Rust. (See [here] for information about building Wasm components from other
 languages too!)
 
@@ -32,7 +31,7 @@ $
 
 This builds a Wasm component, `target/wasm32-wasi/debug/hello_wasi_http.wasm`.
 
-To run it, we'll need at least Wasmtime 14.0.3. Installation instructions are
+To run it, we'll need at least Wasmtime 17.0.0. Installation instructions are
 on [wasmtime.dev]:
 
 ```sh
@@ -91,7 +90,7 @@ and say hi!
 Here are my notes on how I created this repository, in case you're interested
 in recreating it.
 
-Run `cargo-component new --reactor` to create a new project:
+Run `cargo-component new --proxy --lib` to create a new project:
 
 ```sh
 $ cargo component new --reactor hello-wasi-http
@@ -101,10 +100,10 @@ $ cargo component new --reactor hello-wasi-http
 $ cd hello-wasi-http
 ```
 
-Copy the `wit` directory from Wasmtime 14.0.0, to ensure that we're using the
+Copy the `wit` directory from Wasmtime 17.0.0, to ensure that we're using the
 same version of the API that Wasmtime is built with:
 
-<https://github.com/bytecodealliance/wasmtime/tree/release-14.0.0>
+<https://github.com/bytecodealliance/wasmtime/tree/release-17.0.0>
 
 I then manually trimmed the filesystem and sockets dependencies out.
 
