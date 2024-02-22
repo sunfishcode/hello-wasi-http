@@ -1,7 +1,7 @@
 # Hello WASI HTTP!
 
 This is a simple tutorial to get started with WASI HTTP using the
-`wasmtime serve` command in [Wasmtime] 17.0. It runs an HTTP server and
+`wasmtime serve` command in [Wasmtime] 18.0. It runs an HTTP server and
 forwards requests to a Wasm component via the [WASI HTTP] API.
 
 [Wasmtime]: https://wasmtime.dev
@@ -31,7 +31,7 @@ $
 
 This builds a Wasm component, `target/wasm32-wasi/debug/hello_wasi_http.wasm`.
 
-To run it, we'll need at least Wasmtime 17.0.0. Installation instructions are
+To run it, we'll need at least Wasmtime 18.0.0. Installation instructions are
 on [wasmtime.dev]:
 
 ```sh
@@ -100,10 +100,10 @@ $ cargo component new --reactor hello-wasi-http
 $ cd hello-wasi-http
 ```
 
-Copy the `wit` directory from Wasmtime 17.0.0, to ensure that we're using the
+Copy the `wit` directory from Wasmtime 18.0.0, to ensure that we're using the
 same version of the API that Wasmtime is built with:
 
-<https://github.com/bytecodealliance/wasmtime/tree/release-17.0.0>
+<https://github.com/bytecodealliance/wasmtime/tree/release-18.0.0>
 
 I then manually trimmed the filesystem and sockets dependencies out.
 
