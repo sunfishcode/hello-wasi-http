@@ -14,7 +14,7 @@ So without further ado...
 ## Let's go!
 
 First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements),
-version 0.7.1, which is a tool for building Wasm components implemented in
+version 0.9.1, which is a tool for building Wasm components implemented in
 Rust. (See [here] for information about building Wasm components from other
 languages too!)
 
@@ -52,6 +52,18 @@ With that running, in another window, we can now make requests!
 $ curl http://localhost:8080
 Hello, wasi:http/proxy world!
 ```
+
+## Optimizing!
+
+The above uses a debug build; to make a component that runs faster, build
+with `cargo component build --release`.
+
+It's also worth making sure you have a release build of Wasmtime; if you
+installed it from the instructions above with wasmtime.dev, you're good.
+
+Wasmtime has several tuning options that can improve performance in different
+situations&mdash;pass `-O help` for a list&mdash;but one that's especially
+useful here is `-O pooling-allocator`.
 
 ## Notes
 

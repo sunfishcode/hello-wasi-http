@@ -29,4 +29,5 @@ proxy = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wit-bindgen = "0.18.0"
+bitflags = "2.4.2"
+wit-bindgen-rt = "0.21.0"
