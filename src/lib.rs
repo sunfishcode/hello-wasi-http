@@ -6,6 +6,8 @@ pub use bindings::wasi::http::types::{
 
 struct Component;
 
+bindings::export!(Component with_types_in bindings);
+
 impl bindings::exports::wasi::http::incoming_handler::Guest for Component {
     fn handle(_request: IncomingRequest, outparam: ResponseOutparam) {
         let hdrs = Fields::new();
