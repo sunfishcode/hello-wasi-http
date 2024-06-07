@@ -14,7 +14,7 @@ So without further ado...
 ## Let's go!
 
 First, [install `cargo component`](https://github.com/bytecodealliance/cargo-component#requirements),
-version 0.11.0, which is a tool for building Wasm components implemented in
+which is a tool for building Wasm components implemented in
 Rust. (See [here] for information about building Wasm components from other
 languages too!)
 
@@ -40,12 +40,11 @@ $ curl https://wasmtime.dev/install.sh -sSf | bash
 
 [wasmtime.dev]: https://wasmtime.dev/
 
-Then, in a new terminal, we can run `wasmtime serve` on our Wasm component:
+Run `cargo component serve` or the equivalent:
 ```
 $ wasmtime serve target/wasm32-wasi/debug/hello_wasi_http.wasm
 ```
-This starts up an HTTP server on `0.0.0.0:8080` (the specific address and port
-can be configured with the `--addr=` flag).
+This starts up an HTTP server on `0.0.0.0:8080`.
 
 With that running, in another window, we can now make requests!
 ```
