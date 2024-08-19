@@ -12,21 +12,22 @@ So without further ado...
 
 ## Let's go!
 
-First, [install `cargo-component`](https://github.com/bytecodealliance/cargo-component#requirements) (at least,
-`cargo-component` `0.13.2`). `cargo-component` is a tool for building Wasm components implemented in Rust. For more
+First, [install `cargo-component`](https://github.com/bytecodealliance/cargo-component#requirements) (version 0.13.2 or later). `cargo-component` is a tool for building Wasm components implemented in Rust. For more
 information on building Wasm components from different languages, check [here]!
 
 [here]: https://component-model.bytecodealliance.org/language-support.html
 
 With that, build the Wasm component from source in this repository:
 ```sh
-cargo component build
+$ cargo component build
+  Compiling hello-wasi-http v0.0.0 (/home/wasm/hello-wasi-http)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.01s
+    Creating component target/wasm32-wasip1/debug/hello_wasi_http.wasm
 ```
 
 This builds a Wasm component at `target/wasm32-wasip1/debug/hello_wasi_http.wasm`.
 
-To run it, we'll need at least Wasmtime `18.0`. You can install it on Linux or macOS with the command below (for other 
-platforms, see [wasmtime.dev]).
+To run it, we'll need at least Wasmtime `18.0`. Installation instructions are on [wasmtime.dev]. For example, on Linux or macOS, use the command below:
 
 ```sh
 $ curl https://wasmtime.dev/install.sh -sSf | bash
@@ -36,7 +37,7 @@ $ curl https://wasmtime.dev/install.sh -sSf | bash
 
 Then, run in your terminal:
 ```sh
-$ cargo component serve # or, wasmtime serve target/wasm32-wasip1/debug/hello_wasi_http.wasm
+$ cargo component serve
 ```
 This starts up an HTTP server that, by default, listens on `0.0.0.0:8080`.
 
@@ -53,7 +54,7 @@ The above uses a `debug` build. To make a component that runs faster, build with
 It's also worth making sure you have a release build of Wasmtime; if you installed it from the instructions above
 with wasmtime.dev, you're good.
 
-Wasmtime has several tuning options that can improve performance in different situations — pass `-O help` for a
+Wasmtime has several tuning options that can improve performance in different situations—pass `-O help` for a
 list. One that's especially useful here is `-O pooling-allocator`.
 
 ## Notes
@@ -90,6 +91,9 @@ To create a new project, run:
 
 ```sh
 $ cargo component new --proxy --lib hello-wasi-http
+    Created binary (application) `hello-wasi-http` package
+    Updated manifest of package `hello-wasi-http`
+    Generated source file `src/main.rs`
 $ cd hello-wasi-http
 ```
 
@@ -107,7 +111,7 @@ adapted it to work with cargo component, in particular by adding:
 cargo_component_bindings::generate!();
 ```
 
-Then, renamed the `T` type to `Component`, which the bindings expect.
+Then, I renamed the `T` type to `Component`, which the bindings expect.
 
 Finally, add dependencies:
 ```
