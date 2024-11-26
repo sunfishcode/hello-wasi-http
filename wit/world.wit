@@ -1,5 +1,0 @@
-package sunfishcode:hello-wasi-http;
-
-world target-world {
-  include wasi:http/proxy@0.2.0;
-}
