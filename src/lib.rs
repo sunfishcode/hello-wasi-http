@@ -1,14 +1,12 @@
-mod bindings;
-
-pub use bindings::wasi::http::types::{
+pub use wasi::http::types::{
     Fields, IncomingRequest, OutgoingBody, OutgoingResponse, ResponseOutparam,
 };
 
 struct Component;
 
-bindings::export!(Component with_types_in bindings);
+wasi::http::proxy::export!(Component);
 
-impl bindings::exports::wasi::http::incoming_handler::Guest for Component {
+impl wasi::exports::wasi::http::incoming_handler::Guest for Component {
     fn handle(_request: IncomingRequest, outparam: ResponseOutparam) {
         let hdrs = Fields::new();
         let resp = OutgoingResponse::new(hdrs);

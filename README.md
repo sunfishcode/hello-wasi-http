@@ -12,20 +12,21 @@ So without further ado...
 
 ## Let's go!
 
-First, [install `cargo-component`](https://github.com/bytecodealliance/cargo-component#requirements) (version 0.13.2 or later). `cargo-component` is a tool for building Wasm components implemented in Rust. For more
-information on building Wasm components from different languages, check [here]!
+First, [install Rust](https://www.rust-lang.org/learn/get-started) (version 1.82 or later).
+For more information on building Wasm components from different languages, check [here]!
 
 [here]: https://component-model.bytecodealliance.org/language-support.html
 
 With that, build the Wasm component from source in this repository:
 ```sh
-$ cargo component build
-  Compiling hello-wasi-http v0.0.0 (/home/wasm/hello-wasi-http)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.01s
-    Creating component target/wasm32-wasip1/debug/hello_wasi_http.wasm
+$ RUSTFLAGS="-Clink-arg=--wasi-adapter=proxy" cargo build --target=wasm32-wasip2
+   Compiling wit-bindgen-rt v0.35.0
+   Compiling bitflags v2.6.0
+   Compiling hello-wasi-http v0.0.0 (/home/dev/hello-wasi-http)
+    Finished `dev` profile [unoptimized + debuginfo] target(s)
 ```
 
-This builds a Wasm component at `target/wasm32-wasip1/debug/hello_wasi_http.wasm`.
+This builds a Wasm component at `target/wasm32-wasip2/debug/hello_wasi_http.wasm`.
 
 To run it, we'll need at least Wasmtime `18.0`. Installation instructions are on [wasmtime.dev]. For example, on Linux or macOS, use the command below:
 
@@ -37,7 +38,7 @@ $ curl https://wasmtime.dev/install.sh -sSf | bash
 
 Then, run in your terminal:
 ```sh
-$ cargo component serve
+$ wasmtime serve target/wasm32-wasip2/debug/hello_wasi_http.wasm
 ```
 This starts up an HTTP server that, by default, listens on `0.0.0.0:8080`.
 
@@ -49,7 +50,7 @@ Hello, wasi:http/proxy world!
 
 ## Optimizing!
 
-The above uses a `debug` build. To make a component that runs faster, build with `cargo component build --release`.
+The above uses a `debug` build. To make a component that runs faster, run `cargo` with the `--release` flag.
 
 It's also worth making sure you have a release build of Wasmtime; if you installed it from the instructions above
 with wasmtime.dev, you're good.
@@ -82,47 +83,5 @@ If you're interested in tutorials for any of these options, please reach out and
 
 [proxy]: https://github.com/WebAssembly/wasi-http/blob/main/wit/proxy.wit
 [wasi-cloud-core]: https://github.com/WebAssembly/wasi-cloud-core
-
-## Creating this repo
-
-Here are my notes on how I created this repository, in case you're interested in recreating it.
-
-To create a new project, run:
-
-```sh
-$ cargo component new --proxy --lib hello-wasi-http
-    Created binary (application) `hello-wasi-http` package
-    Updated manifest of package `hello-wasi-http`
-    Generated source file `src/main.rs`
-$ cd hello-wasi-http
-```
-
-Copy the `wit` directory from your version of  Wasmtime, to ensure that we're using the same version of the API that
-Wasmtime is built with (e.g., for Wasmtime 18.0.0: https://github.com/bytecodealliance/wasmtime/tree/release-18.0.0).
-
-Then, I manually trimmed the filesystem and sockets dependencies out.
-
-In the future, we'll have wit dependencies stored in a registry, which will make this all much easier.
-
-I derived `src/lib.rs` from Wasmtime's `crates/test-programs/src/bin/api_proxy.rs` contents on the `main` branch,
-adapted it to work with cargo component, in particular by adding:
-
-```rust
-cargo_component_bindings::generate!();
-```
-
-Then, I renamed the `T` type to `Component`, which the bindings expect.
-
-Finally, add dependencies:
-```
-$ cargo component add --target --path wit/deps/clocks wasi:clocks
-$ cargo component add --target --path wit/deps/io wasi:io
-$ cargo component add --target --path wit/deps/random wasi:random
-$ cargo component add --target --path wit/deps/cli wasi:cli
-$ cargo component add --target --path wit/deps/logging wasi:logging
-```
-
-These don't all actually get used in this tutorial, but they're currently needed because of some of the interfaces we
-copied in from the Wasmtime tree reference them.
 
 > TODO: I should also make a `api_proxy_streaming.rs` version to show streaming.
