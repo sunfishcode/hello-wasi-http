@@ -3,6 +3,12 @@
 This is a simple tutorial to get started with WASI HTTP using the `wasmtime serve` command introduced in [Wasmtime] 18.0.
 It runs an HTTP server and forwards requests to a Wasm component via the [WASI HTTP] API.
 
+Other resources you may find interesting:
+ - [This tutorial](https://github.com/yoshuawuyts/sample-wasi-http-rust/), which uses
+   wkg and registries.
+ - The [`wstd` crate](https://crates.io/crates/wstd), which provides friendlier APIs
+   on top of the WASI APIs, and includes examples.
+
 [Wasmtime]: https://wasmtime.dev
 [WASI HTTP]: https://github.com/WebAssembly/wasi-http/
 
